@@ -1,120 +1,128 @@
--- Introduction to contraints
-
+-- Not null constraint
 create table table_nn(
 	id serial primary key,
 	tag text not null
-)
+);
 
--- lets view the data
+select * from table_nn;
 
-select * from table_nn
+insert into table_nn(tag) values ('adam');
 
-insert into table_nn (tag) values
-('ADAM');
+insert into table_nn(tag) values (NULL);
 
+insert into table_nn(tag) values ('');
+
+insert into table_nn(tag) values ('0');
 
 create table table_nn2(
 	id serial primary key,
-	tag2 text
-)
-
-alter table table_name
-alter column column_name set ....
+	tag2 text not null
+);
 
 alter table table_nn2
 alter column tag2 set not null;
 
-insert into table_nn2 (tag2) values
-('ADAM')
+
+insert into table_nn2(tag2) values (NULL);
+
+insert into table_nn2(tag2) values ('');
+
+insert into table_nn2(tag2) values ('0');
+
+-- Unique constraint
 
 create table table_emails(
 	id serial primary key,
 	emails text unique
-)
+);
 
-select * from table_emails
+select * from table_emails;
 
-insert into table_emails (emails) values ('a@b.com')
+insert into table_emails (emails) values ('a@b.com');
 
 create table table_products(
 	id serial primary key,
 	product_code varchar(10),
 	product_name text
-)
+);
 
 alter table table_products
-add constraint unique_product_code unique (product_code, product_name)
+add constraint unique_product_code unique (product_code, product_name);
 
-insert into table_products (product_code,  product_name) values
-('A', 'apple');
+insert into table_products (product_code, product_name) values('apple','A');
 
-select * from table_products
 
-create table employee(
+-- default constraint
+create table employees(
 	employee_id serial primary key,
-	first_name varchar(50),
-	last_name varchar(50),
-	is_enable varchar(2) default 'Y'
-)
+	first_name varchar(10),
+	last_name varchar (50),
+	is_enable varchar(2) default 'y'
+);
 
+select * from employees;
 
-insert into employee (first_name, last_name) values ('JOH','ADA');
+insert into employees(first_name, last_name) values ('Priyam2', 'Vyas2');
 
-alter table employee 
-alter column is_enable set default 'N'
+alter table employees
+alter column is_enable set default 'N';
 
--- drop default value
+alter table employees
+alter column is_enable drop default;
 
-alter table employee
-alter column is_enable drop default 
-
-
-select * from employee
-
--- Primary contraint
-
+-- Primary key constraint
 create table table_items(
 	item_id integer primary key,
 	item_name varchar(100) not null
-)
+);
 
 select * from table_items;
 
-insert into table_items (item_id, item_name) values
-(1, 'pen')
+insert into table_items(item_id, item_name) values (1,'Pen');
 
--- drop a constraits
+-- Constraint naming convention --> Tablename_pkey
 
+-- drop a constraint
 alter table table_items
 drop constraint table_items_pkey;
 
-
--- add a primary key
-
+-- alter table and add a primary key
 alter table table_items
-add primary key(item_id)
+add primary key(item_id, item_name);
 
-select * from table_items
+insert into table_items(item_id, item_name) values (2,'');
 
 
+-- Primary key constraints on multiple columns
 create table t_grades(
-	course_id varchar(100) not null,
+	course_id varchar(100) not null, 
 	student_id varchar(100) not null,
-	grade int not null
+	grade int not null,
+	primary key (course_id, student_id)
 );
 
-select * from t_grades
-insert into t_grades (course_id, student_id, grade) values
-('Math','S1',50),
-('Chemistry','s1',70),
-('English','s2',70),
-('Physics', 's1',80);
+select * from t_grades;
+
+insert into t_grades(course_id, student_id, grade) 
+values 
+('Math','S',70),
+('Chemistry','S',70),
+('English','S',80),
+('Physics','S',80);
 
 drop table t_grades;
 
+-- drop a primary key
 alter table t_grades
-drop constraint t_grades_pkey
+drop constraint t_grades_pkey;
 
+SELECT conname, contype
+FROM pg_constraint
+WHERE conrelid = 't_grades'::regclass;
+
+alter table t_grades 
+	add constraint t_grades_course_id_session_id_pkey
+		primary key(course_id, student_id);
 
 -- Tables without foreign key constraints
 drop table table_products;
@@ -173,7 +181,6 @@ insert into t_products(product_id,products_name, supplier_id) values
 
 select * from t_products;
 	
-
 	insert into t_products(product_id,products_name, supplier_id) values
 	(4, 'computer', 100);
 
@@ -242,18 +249,6 @@ rename constraint price_check to price_discount_check
 -- drop a constraint
 alter table prices 
 drop constraint price_discount_check
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
