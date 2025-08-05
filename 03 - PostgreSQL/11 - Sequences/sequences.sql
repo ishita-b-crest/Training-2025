@@ -141,7 +141,20 @@ create table contacts(
 	contact_id text not null default ()
 );
 
-
--- file updated recently
-
+create table contacts(
+	contact_id text not null default ('ID' || nextval('table_seq')),
+	contact_name varchar(150)
+);
+ 
+--26. Alter Sequence
+ 
+alter sequence table_seq owned by contacts.contact_id
+ 
+--27. Insert data into table
+ 
+insert into contacts (contact_name) values ('ADNAM')
+ 
+--28. View table
+ 
+select * from contacts
 
