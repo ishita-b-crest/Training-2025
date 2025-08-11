@@ -280,7 +280,7 @@ select * from students where student_grade @> '{2020}';
 -- Search all students with gread greater than 70
  
 select * from students where student_grade[1] > 70
-	
+
 
 
 

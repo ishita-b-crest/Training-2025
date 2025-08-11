@@ -1,4 +1,4 @@
--- Duplicate schema w3ith all data
+-- Duplicate schema with all data
 
 -- 1. Lets create a sample database called 'test_schema'
 
