@@ -353,4 +353,119 @@ refresh materialized view mv_directors
 
 delete from mv_directors where first_time = 'dir1'
 
+--32. Check if materialized view is populated or not
+ 
+select relispopulated from pg_class where relname = 'mv_directors2';
+ 
+create materialized view mv_directors2 as
+select first_name
+from directors
+with no data;
+ 
+select * from mv_directors2;
+ 
+--33. Create materialized view of table directors called 'mv_directors_us'
+ 
+create materialized view mv_directors_us as
+select director_id,first_name,last_name,nationality,date_of_birth
+from directors
+where nationality = 'American'
+with no data;
+ 
+select * from mv_directors_us;
+ 
+--34. Refresh the data
+ 
+refresh materialized view mv_directors_us;
+ 
+refresh materialized view concurrently mv_directors_us;
+ 
+--35. Create a unique index
+ 
+create unique index idx_u_mv_directors_us_director_id on mv_directors_us (director_id);
+ 
+--36. Create a table
+ 
+create table page_clicks(
+	rec_id serial primary key,
+	page varchar(200),
+	click_time timestamp,
+	user_id bigint
+);
+ 
+--37. Populate sample data with 10,000 rows of fake data
+
+insert into page_clicks (page,click_time,user_id) 
+select 
+(
+	case(random()*2)::int
+		when 0 then 'klickanalytics.com'
+		when 1 then 'clickapis.com'
+		when 2 then 'google.com'
+	end
+)as page,
+now() as click_time,
+(floor(random()* (111111111-1000000+1)+1000000))::int as user_id
+from generate_series(1,10000) seq;
+ 
+select * from page_clicks;
+
+--38. Analyze daily trend
+ 
+create materialized view mv_page_clicks as
+select date_trunc('day',click_time) as day,page,count(*) as total_clicks
+from page_clicks
+group by day,page;
+ 
+--39. Refresh the data
+ 
+refresh materialized view mv_page_clicks;
+ 
+select * from mv_page_clicks;
+ 
+create materialized view mv_page_clicks_daily as
+select click_time as day,page,count(*) as cnt
+from page_clicks
+where click_time >= date_trunc('day',now()) and click_time < timestamp 'tomorrow'
+group by day,page;
+ 
+--40. Create a unique index
+ 
+create unique index idx_mv_page_clicks_daily_day_page on mv_page_clicks_daily (day,page);
+ 
+refresh materialized view concurrently mv_page_clicks_daily;
+ 
+select * from mv_page_clicks_daily
+
+--List all materiazlied views
+
+select oid::regclass::text
+from   pg_class
+where  relkind = 'm'
+
+
+
+-- List all materialized views with no UNIQUE INDEXES
+
+refresh materialized view concurrently mat_view_name
+
+with matviews_with_no_unique_keys as(
+	select c.oid, c.relname, c2.relname as idx_name
+	from pg_catalog.pg_class c, pg_catalog.pg_class c2, pg_catalog.pg_index i
+	left join pg_catalog.pg_contraint con
+	on (
+		conrelid = i.indrelid and conindin = i.indexrelid and contype in ('p', 'u')
+	)
+	where
+	c.relkind = 'm'
+	and c.oid = i.indrelid
+	and i.indexrelid = c2.oid
+	and indisunique
+)
+select c.relname as materialized_view_name
+from pg_class c
+where c.relkind = 'm'
+except
+select nwk.relname
+from matviews_with_no_unique_keys as mwk
 
