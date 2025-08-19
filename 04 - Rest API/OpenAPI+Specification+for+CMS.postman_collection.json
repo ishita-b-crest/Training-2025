@@ -1,0 +1,2189 @@
+{
+	"info": {
+		"_postman_id": "0ef7c61c-f514-4a03-b015-35ac61826a77",
+		"name": "OpenAPI Specification for CMS - Doc",
+		"description": "API Specification document of the CMS system\n\nContact Support:\n Name: Praveenkumar Bouna",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2568495"
+	},
+	"item": [
+		{
+			"name": "courses",
+			"item": [
+				{
+					"name": "{course Id}",
+					"item": [
+						{
+							"name": "students",
+							"item": [
+								{
+									"name": "Get students belonging to a course",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId/students",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId",
+												"students"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "2",
+													"type": "any",
+													"description": "(Required) The unique course id"
+												}
+											]
+										},
+										"description": "Returns the list of all students enrolled in the course"
+									},
+									"response": [
+										{
+											"name": "200 OK",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/students",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"students"
+													],
+													"variable": [
+														{
+															"key": "courseId",
+															"value": "2",
+															"description": "(Required) The unique course id"
+														}
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "Text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												}
+											],
+											"cookie": [],
+											"body": "[\n {\n  \"studentId\": 101,\n  \"firstName\": \"James\",\n  \"lastName\": \"Smith\",\n  \"phoneNumber\": \"555-555-1234\",\n  \"address\": \"US\"\n },\n {\n  \"studentId\": 102,\n  \"firstName\": \"Robert\",\n  \"lastName\": \"Smith\",\n  \"phoneNumber\": \"555-555-7890\",\n  \"address\": \"US\"\n }\n]"
+										},
+										{
+											"name": "404 Not Found",
+											"originalRequest": {
+												"method": "GET",
+												"header": [
+													{
+														"key": "x-mock-match-request-body",
+														"value": "true"
+													}
+												],
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/students",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"students"
+													],
+													"variable": [
+														{
+															"key": "courseId",
+															"value": "50",
+															"description": "(Required) The unique course id"
+														}
+													]
+												}
+											},
+											"status": "Not Found",
+											"code": 404,
+											"_postman_previewlanguage": "Text",
+											"header": [],
+											"cookie": [],
+											"body": "{\n    \"error\": {\n        \"code\": \"INVALID_INPUT\",\n        \"message\": \"One or more input arguments are invalid\",\n        \"target\": \"courseId\"\n    }\n}"
+										}
+									]
+								},
+								{
+									"name": "Add a student to a course",
+									"request": {
+										"method": "POST",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId/students",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId",
+												"students"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "2",
+													"type": "any",
+													"description": "(Required) The unique course id"
+												}
+											]
+										},
+										"description": "Adds a new student association to the course and returns the added student."
+									},
+									"response": [
+										{
+											"name": "201 Created",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"name": "Content-Type",
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"studentId\": 103,\n    \"firstName\": \"Maria\",\n    \"lastName\": \"Rodriguez\",\n    \"phoneNumber\": \"555-555-3333\",\n    \"address\": \"US\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/students",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"students"
+													],
+													"variable": [
+														{
+															"key": "courseId",
+															"value": "2",
+															"description": "(Required) The unique course id"
+														}
+													]
+												}
+											},
+											"_postman_previewlanguage": "Text",
+											"header": [
+												{
+													"key": "Content-Type",
+													"value": "application/json",
+													"description": {
+														"content": "",
+														"type": "text/plain"
+													}
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"studentId\": 103,\n    \"firstName\": \"Maria\",\n    \"lastName\": \"Rodriguez\",\n    \"phoneNumber\": \"555-555-3333\",\n    \"address\": \"US\"\n}"
+										},
+										{
+											"name": "400 Bad Request",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "Content-Type",
+														"value": "application/json"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"studentId\": 103,\n    \"firstName\": \"Maria\",\n    \"lastName\": \"Rodriguez\",\n    \"phoneNumber\": \"555-555\",\n    \"address\": \"US\"\n}"
+												},
+												"url": {
+													"raw": "{{baseUrl}}/courses/:courseId/students",
+													"host": [
+														"{{baseUrl}}"
+													],
+													"path": [
+														"courses",
+														":courseId",
+														"students"
+													],
+													"variable": [
+														{
+															"key": "courseId",
+															"value": "2",
+															"description": "(Required) The unique course id"
+														}
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "Text",
+											"header": [],
+											"cookie": [],
+											"body": "{\n    \"error\": {\n        \"code\": \"INVALID_INPUT\",\n        \"message\": \"One or more input arguments are invalid\",\n        \"target\": \"phoneNumber\",\n        \"details\": [\n            {\n                \"code\": \"NOT_SUPPORTED\",\n                \"target\": \"phoneNumber\",\n                \"message\": \"The phone number format is incorrect\"\n            }\n        ]\n    }\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "Get a specific course",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses/:courseId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses",
+										":courseId"
+									],
+									"variable": [
+										{
+											"key": "courseId",
+											"value": "2"
+										}
+									]
+								},
+								"description": "Returns the course details"
+							},
+							"response": [
+								{
+									"name": "404 Not Found",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "50"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Sat, 06 Feb 2021 00:29:45 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "x-srv-trace",
+											"value": "v=1;t=08251cfc422b28c3"
+										},
+										{
+											"key": "x-srv-span",
+											"value": "v=1;s=f53279c7f7f2eb16"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "120"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "118"
+										},
+										{
+											"key": "X-RateLimit-Reset",
+											"value": "1612569306"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"0-2jmj7l5rSw0yVb/vlWAYkK/YBwk\""
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n  \"error\": {\r\n    \"code\": \"INVALID_INPUT\",\r\n    \"message\": \"One or more input arguments are invalid\",\r\n    \"target\": \"courseId\"\r\n  }\r\n}"
+								},
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"courseId\": 2,\n    \"courseName\": \"Information Technology\",\n    \"courseDuration\": 4,\n    \"courseType\": \"Engineering\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update an existing course",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"courseId\": 2,\n    \"courseName\": \"IT\",\n    \"courseDuration\": 4,\n    \"courseType\": \"Engineering\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/courses/:courseId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses",
+										":courseId"
+									],
+									"variable": [
+										{
+											"key": "courseId",
+											"value": "2",
+											"description": "(Required) The unique course id"
+										}
+									]
+								},
+								"description": "Updates a course entry and returns the updated course"
+							},
+							"response": [
+								{
+									"name": "Update an existing course",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"key": "Content-Type",
+												"value": "application/json"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"courseId\": 2,\n    \"courseName\": \"Information Technology\",\n    \"courseDuration\": 4,\n    \"courseType\": \"Engineering\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "50",
+													"description": "(Required) The unique course id"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Date",
+											"value": "Thu, 11 Mar 2021 05:43:47 GMT"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Transfer-Encoding",
+											"value": "chunked"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Server",
+											"value": "nginx"
+										},
+										{
+											"key": "x-srv-trace",
+											"value": "v=1;t=5ca6c0db18ea9c54"
+										},
+										{
+											"key": "x-srv-span",
+											"value": "v=1;s=907a04ff845431d6"
+										},
+										{
+											"key": "Access-Control-Allow-Origin",
+											"value": "*"
+										},
+										{
+											"key": "X-RateLimit-Limit",
+											"value": "120"
+										},
+										{
+											"key": "X-RateLimit-Remaining",
+											"value": "118"
+										},
+										{
+											"key": "X-RateLimit-Reset",
+											"value": "1615441470"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"67-fhXZAGcLDGuL49KF3pAA5hR+GjQ\""
+										},
+										{
+											"key": "Vary",
+											"value": "Accept-Encoding"
+										},
+										{
+											"key": "Content-Encoding",
+											"value": "gzip"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "200 OK",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"courseId\": 2,\n    \"courseName\": \"IT\",\n    \"courseDuration\": 4,\n    \"courseType\": \"Engineering\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"courseId\": 2,\n    \"courseName\": \"IT\",\n    \"courseDuration\": 4,\n    \"courseType\": \"Engineering\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Delete a specific course",
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "<Bearer Token>",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses/:courseId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses",
+										":courseId"
+									],
+									"variable": [
+										{
+											"key": "courseId",
+											"value": "2",
+											"description": "(Required) The unique course id"
+										}
+									]
+								},
+								"description": "Removes a course entry from the system"
+							},
+							"response": [
+								{
+									"name": "204 No Content",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "2"
+												}
+											]
+										}
+									},
+									"status": "No Content",
+									"code": 204,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "404 Not Found",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: bearer",
+												"key": "Authorization",
+												"value": "Bearer <token>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/courses/:courseId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"courses",
+												":courseId"
+											],
+											"variable": [
+												{
+													"key": "courseId",
+													"value": "50"
+												}
+											]
+										}
+									},
+									"status": "Not Found",
+									"code": 404,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\r\n  \"error\": {\r\n    \"code\": \"INVALID_INPUT\",\r\n    \"message\": \"One or more input arguments are invalid\",\r\n    \"target\": \"courseId\"\r\n  }\r\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get all the courses",
+					"request": {
+						"auth": {
+							"type": "basic",
+							"basic": [
+								{
+									"key": "password",
+									"value": "",
+									"type": "string"
+								},
+								{
+									"key": "username",
+									"value": "",
+									"type": "string"
+								}
+							]
+						},
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						},
+						"description": "Returns the list of all courses"
+					},
+					"response": [
+						{
+							"name": "200 OK",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\r\n {\r\n    \"courseId\": 1,\r\n    \"courseName\": \"Computer Science\",\r\n    \"courseDuration\": 4,\r\n    \"courseType\": \"Engineering\"\r\n },\r\n {\r\n    \"courseId\": 2,\r\n    \"courseName\": \"Information Technology\",\r\n    \"courseDuration\": 4,\r\n    \"courseType\": \"Engineering\"\r\n },\r\n {\r\n    \"courseId\": 3,\r\n    \"courseName\": \"Biotechnology\",\r\n    \"courseDuration\": 3,\r\n    \"courseType\": \"Engineering\"\r\n },\r\n  {\r\n    \"courseId\": 4,\r\n    \"courseName\": \"Master of Business Administration (MBA)\",\r\n    \"courseDuration\": 2,\r\n    \"courseType\": \"Management\"\r\n },\r\n {\r\n    \"courseId\": 5,\r\n    \"courseName\": \"Master of Management Studies (MMS)\",\r\n    \"courseDuration\": 1,\r\n    \"courseType\": \"Management\"\r\n }\r\n]"
+						},
+						{
+							"name": "500 Internal Server Error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses-2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses-2"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "200 OK sortBy",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses?sortBy=courseName",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "sortBy",
+											"value": "courseName"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\"\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\"\n    }\n]"
+						},
+						{
+							"name": "200 OK courseType",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses?courseType=Engineering",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "courseType",
+											"value": "Engineering"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    }\n]"
+						},
+						{
+							"name": "200 OK page",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses?page=1&size=4",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "page",
+											"value": "1"
+										},
+										{
+											"key": "size",
+											"value": "4"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\"\n    }\n]"
+						},
+						{
+							"name": "Versioning - URL - v1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v1/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v1",
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\"\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\"\n    }\n]"
+						},
+						{
+							"name": "Versioning - URL - v2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/v2/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"v2",
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8 \n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 6\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    }\n]"
+						},
+						{
+							"name": "Versioning - QueryString - v1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses?version=1",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "version",
+											"value": "1"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\"\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\"\n    }\n]"
+						},
+						{
+							"name": "Versioning - QueryString - v2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/courses?version=2",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									],
+									"query": [
+										{
+											"key": "version",
+											"value": "2"
+										}
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 6\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    }\n]"
+						},
+						{
+							"name": "Versioning - Header - v1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-Version",
+										"value": "1"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/courses-header",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses-header"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8 \n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 6\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    }\n]"
+						},
+						{
+							"name": "Versioning - Header - v2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "X-API-Version",
+										"value": "2"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/courses-header",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses-header"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8 \n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 6\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    }\n]"
+						},
+						{
+							"name": "Versioning - MediaType - v1",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/vnd.cms.v1+json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\"\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\"\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\"\n    }\n]"
+						},
+						{
+							"name": "Versioning - MediaType - v2",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/vnd.cms.v2+json"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json",
+									"description": {
+										"content": "",
+										"type": "text/plain"
+									}
+								}
+							],
+							"cookie": [],
+							"body": "[\n    {\n        \"courseId\": 1,\n        \"courseName\": \"Computer Science\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 2,\n        \"courseName\": \"Information Technology\",\n        \"courseDuration\": 4,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 8\n    },\n    {\n        \"courseId\": 3,\n        \"courseName\": \"Biotechnology\",\n        \"courseDuration\": 3,\n        \"courseType\": \"Engineering\",\n        \"totalSubjects\": 6\n    },\n    {\n        \"courseId\": 4,\n        \"courseName\": \"Master of Business Administration (MBA)\",\n        \"courseDuration\": 2,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    },\n    {\n        \"courseId\": 5,\n        \"courseName\": \"Master of Management Studies (MMS)\",\n        \"courseDuration\": 1,\n        \"courseType\": \"Management\",\n        \"totalSubjects\": 10\n    }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add a new course",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"url": {
+							"raw": "{{baseUrl}}/courses",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"courses"
+							]
+						},
+						"description": "Adds a new course entry to the system and returns the added course"
+					},
+					"response": [
+						{
+							"name": "400 Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"name": "Content-Type",
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"courseName\": \"MBBS\",\n    \"courseDuration\": 5,\n    \"courseType\": \"Arts\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{baseUrl}}/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Date",
+									"value": "Sat, 06 Feb 2021 00:00:50 GMT"
+								},
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								},
+								{
+									"key": "Content-Length",
+									"value": "102"
+								},
+								{
+									"key": "Connection",
+									"value": "keep-alive"
+								},
+								{
+									"key": "Server",
+									"value": "nginx"
+								},
+								{
+									"key": "x-srv-trace",
+									"value": "v=1;t=4b94e161f0dbcf40"
+								},
+								{
+									"key": "x-srv-span",
+									"value": "v=1;s=2452e980d8480151"
+								},
+								{
+									"key": "Access-Control-Allow-Origin",
+									"value": "*"
+								},
+								{
+									"key": "X-RateLimit-Limit",
+									"value": "120"
+								},
+								{
+									"key": "X-RateLimit-Remaining",
+									"value": "118"
+								},
+								{
+									"key": "X-RateLimit-Reset",
+									"value": "1612569667"
+								},
+								{
+									"key": "ETag",
+									"value": "W/\"66-5xRBhYFDi8bghvtQyxGihogEqUQ\""
+								},
+								{
+									"key": "Vary",
+									"value": "Accept-Encoding"
+								}
+							],
+							"cookie": [],
+							"body": "{\r\n  \"error\": {\r\n    \"code\": \"INVALID_INPUT\",\r\n    \"message\": \"One or more input arguments are invalid\",\r\n    \"target\": \"courseType\",\r\n    \"details\": [\r\n      {\r\n       \"code\": \"NOT_SUPPORTED\",\r\n       \"target\": \"courseType\",\r\n       \"message\": \"The provided Course Type isn't supported\"\r\n      }\r\n    ],\r\n    \"innererror\": {\r\n      \"message\": \"\"\r\n    }\r\n  }\r\n}"
+						},
+						{
+							"name": "201 Created",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									},
+									{
+										"key": "x-mock-match-request-body",
+										"value": "true"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"courseName\": \"MBBS\",\n    \"courseDuration\": 5,\n    \"courseType\": \"Medical\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/courses",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"courses"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json; charset=utf-8"
+								}
+							],
+							"cookie": [],
+							"body": "{\n    \"courseId\": 10,\n    \"courseName\": \"MBBS\",\n    \"courseDuration\": 5,\n    \"courseType\": \"Medical\"\n}"
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "students",
+			"item": [
+				{
+					"name": "{student Id}",
+					"item": [
+						{
+							"name": "Get a specific student",
+							"request": {
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:studentId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":studentId"
+									],
+									"variable": [
+										{
+											"key": "studentId",
+											"value": "cupidatat",
+											"description": "(Required) The unique student id"
+										}
+									]
+								},
+								"description": "Returns the student details"
+							},
+							"response": [
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal server error",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Successfully returned the student details",
+									"originalRequest": {
+										"method": "GET",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"studentId\": 101,\n \"firstName\": \"James\",\n \"lastName\": \"Smith\",\n \"phoneNumber\": \"555-555-1234\",\n \"address\": \"US\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Update an existing student",
+							"request": {
+								"method": "PUT",
+								"header": [
+									{
+										"key": "Content-Type",
+										"value": "application/json"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/students/:studentId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":studentId"
+									],
+									"variable": [
+										{
+											"key": "studentId",
+											"value": "cupidatat",
+											"description": "(Required) The unique student id"
+										}
+									]
+								},
+								"description": "Updates a student entry in the system and returns the updated student"
+							},
+							"response": [
+								{
+									"name": "Student is updated successfully",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "{\n \"studentId\": 101,\n \"firstName\": \"James\",\n \"lastName\": \"Smith\",\n \"phoneNumber\": \"555-555-1234\",\n \"address\": \"US\"\n}"
+								},
+								{
+									"name": "Internal server error",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+										},
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						},
+						{
+							"name": "Delete a student entry",
+							"request": {
+								"method": "DELETE",
+								"header": [],
+								"url": {
+									"raw": "{{baseUrl}}/students/:studentId",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students",
+										":studentId"
+									],
+									"variable": [
+										{
+											"key": "studentId",
+											"value": "cupidatat",
+											"description": "(Required) The unique student id"
+										}
+									]
+								},
+								"description": "Removes a student entry from the system"
+							},
+							"response": [
+								{
+									"name": "Successfully deleted",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "text/plain"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Success",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": "\"Successfully deleted\""
+								},
+								{
+									"name": "Bad Request",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								},
+								{
+									"name": "Internal server error",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [
+											{
+												"description": "Added as a part of security scheme: basic",
+												"key": "Authorization",
+												"value": "Basic <credentials>"
+											}
+										],
+										"url": {
+											"raw": "{{baseUrl}}/students/:studentId",
+											"host": [
+												"{{baseUrl}}"
+											],
+											"path": [
+												"students",
+												":studentId"
+											],
+											"variable": [
+												{
+													"key": "studentId"
+												}
+											]
+										}
+									},
+									"status": "Internal Server Error",
+									"code": 500,
+									"_postman_previewlanguage": "Text",
+									"header": [
+										{
+											"key": "Content-Type",
+											"value": "application/json"
+										}
+									],
+									"cookie": [],
+									"body": ""
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Get all the students",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "{{baseUrl}}/students",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students"
+							]
+						},
+						"description": "Returns the list of all students present in the system"
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Successfully returned all student entries",
+							"originalRequest": {
+								"method": "GET",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "OK",
+							"code": 200,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "[\n {\n  \"studentId\": 101,\n  \"firstName\": \"James\",\n  \"lastName\": \"Smith\",\n  \"phoneNumber\": \"555-555-1234\",\n  \"address\": \"US\"\n },\n {\n  \"studentId\": 101,\n  \"firstName\": \"James\",\n  \"lastName\": \"Smith\",\n  \"phoneNumber\": \"555-555-1234\",\n  \"address\": \"US\"\n }\n]"
+						}
+					]
+				},
+				{
+					"name": "Add a new student",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"value": "application/json"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+						},
+						"url": {
+							"raw": "{{baseUrl}}/students",
+							"host": [
+								"{{baseUrl}}"
+							],
+							"path": [
+								"students"
+							]
+						},
+						"description": "Adds a new student entry to the system and returns the added student"
+					},
+					"response": [
+						{
+							"name": "Bad Request",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Bad Request",
+							"code": 400,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Internal server error",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Success",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Internal Server Error",
+							"code": 500,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "text/plain"
+								}
+							],
+							"cookie": [],
+							"body": ""
+						},
+						{
+							"name": "Student entry is added successfully",
+							"originalRequest": {
+								"method": "POST",
+								"header": [
+									{
+										"description": "Added as a part of security scheme: basic",
+										"key": "Authorization",
+										"value": "Basic <credentials>"
+									}
+								],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"studentId\": 101,\n    \"firstName\": \"James\",\n    \"lastName\": \"Smith\",\n    \"phoneNumber\": \"555-555-1234\",\n    \"address\": \"US\"\n}"
+								},
+								"url": {
+									"raw": "{{baseUrl}}/students",
+									"host": [
+										"{{baseUrl}}"
+									],
+									"path": [
+										"students"
+									]
+								}
+							},
+							"status": "Created",
+							"code": 201,
+							"_postman_previewlanguage": "Text",
+							"header": [
+								{
+									"key": "Content-Type",
+									"value": "application/json"
+								}
+							],
+							"cookie": [],
+							"body": "{\n \"studentId\": 101,\n \"firstName\": \"James\",\n \"lastName\": \"Smith\",\n \"phoneNumber\": \"555-555-1234\",\n \"address\": \"US\"\n}"
+						}
+					]
+				}
+			]
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "password",
+				"value": "12345678",
+				"type": "string"
+			},
+			{
+				"key": "username",
+				"value": "apiuser",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "baseUrlLocal",
+			"value": "http://localhost:44333/api/v1",
+			"type": "any"
+		},
+		{
+			"key": "baseUrl",
+			"value": "https://c4998db1-7444-4f30-a653-d8a5eff99200.mock.pstmn.io",
+			"type": "any"
+		}
+	]
+}

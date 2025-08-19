@@ -1,0 +1,86 @@
+STEP 1: Create a New API
+    Title: OpenAPI Specification for CMS
+    Description: API Specification document of the CMS System
+    Contact: Praveenkumar Bouna
+    Version: 1.0
+
+STEP 2: Identify the Type of API
+    Public
+
+STEP 3: Identify the Server Base URL
+    http://{{baseUrl}}
+
+STEP 4: Identify the Resource
+    Resource: Students
+
+STEP 5: Define Student Attributes
+    - studentId (integer, unique)
+    - firstName (string)
+    - lastName (string)
+    - phoneNumber (string)
+    - address (string)
+
+STEP 6: List Operations on Students
+    1. GET /students → Get all students
+    2. GET /students/{studentId} → Get a specific student
+    3. POST /students → Add a new student
+    4. PUT /students/{studentId} → Update an existing student
+    5. DELETE /students/{studentId} → Delete a student entry
+    6. GET /courses/{courseId}/students → Get students belonging to a course
+    7. POST /courses/{courseId}/students → Add a student to a course
+
+STEP 7: Define Request/Response Examples
+    Example GET (all students):
+        Response: 
+        [
+          {
+            "studentId": 101,
+            "firstName": "James",
+            "lastName": "Smith",
+            "phoneNumber": "555-555-1234",
+            "address": "US"
+          }
+        ]
+
+    Example POST (add student):
+        Request:
+        {
+          "firstName": "Maria",
+          "lastName": "Rodriguez",
+          "phoneNumber": "555-555-3333",
+          "address": "US"
+        }
+        Response:
+        {
+          "studentId": 103,
+          "firstName": "Maria",
+          "lastName": "Rodriguez",
+          "phoneNumber": "555-555-3333",
+          "address": "US"
+        }
+
+STEP 8: Define Error Handling
+    - 400 Bad Request → Invalid input (e.g., wrong phone format)
+    - 404 Not Found → Student or Course not found
+    - 500 Internal Server Error → System error
+
+STEP 9: Define Authentication
+    - Basic Auth for some endpoints
+    - Bearer Token for delete operations
+
+STEP 10: Define Response Codes
+    - 200 OK → Successful retrieval/update/delete
+    - 201 Created → Successful creation
+    - 204 No Content → Successful deletion
+    - 400/404/500 → Errors
+
+STEP 11: Define Versioning (if required)
+    - URL versioning: /v1/students
+    - Query parameter: /students?version=1
+    - Header versioning: X-API-Version: 1
+
+STEP 12: Finalize the API Specification
+    - Document all endpoints clearly
+    - Provide request/response schemas
+    - Include authentication details
+    - Add error response samples
