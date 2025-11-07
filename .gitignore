@@ -5,12 +5,18 @@ __pycache__/
 *.pyd
 
 # Virtual environments
+.venv/
 venv/
 env/
 *.venv/
-05 - FastAPI/fastapienv/
+*fastapienv/
 
-# IDE files
+# Environment and secrets
+.env
+*.env
+uv.lock
+
+# IDE / Editor settings
 .idea/
 .vscode/
 
@@ -20,3 +26,28 @@ env/
 # OS files
 .DS_Store
 Thumbs.db
+
+# Build and packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Logs and temp files
+*.log
+logs/
+tmp/
+temp/
+
+# Jupyter notebooks checkpoints
+.ipynb_checkpoints/
+
+# Project specific folders (do not push)
+setup/
+assets/
+guides/
+
+# Pyproject tools
+.pytest_cache/
+.coverage
+htmlcov/
